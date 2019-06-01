@@ -1,0 +1,8 @@
+YelpCamp
+
+- add a landing page
+- add campgrounds page that will list the campgrounds
+
+campgrounds contain:
+    * name
+    * image
