@@ -1,8 +1,10 @@
-const express = require("express");
+import express from "express";
 app = express();
-const bodyParser = require("body-parser");
+import { urlencoded } from "body-parser";
+import mongoose from "mongoose";
 
-app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 app.listen(8000, process.env.IP, () => {
