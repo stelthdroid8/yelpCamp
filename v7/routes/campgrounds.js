@@ -2,7 +2,9 @@ const   express = require("express"),
         campground = require("../models/campground"),
         router = express.Router();
 
-router.get('/campgrounds', (req,res) => {
+    
+//index route (shows all cmapgrounds)
+router.get('/', (req,res) => {
     //get all campgrounds from db then render
     campground.find({}, (err,allCampgrounds) => {
         if (err){
@@ -15,12 +17,8 @@ router.get('/campgrounds', (req,res) => {
     })
 });
 
-router.get('/campgrounds/new', isLoggedIn, (req,res) => {
-    //shows form to send data to post route
-    res.render("campgrounds/new");
-});
-
-router.post('/campgrounds', isLoggedIn, (req,res) => {
+//create route (adds new campground to db)
+router.post('/', isLoggedIn, (req,res) => {
     //retrieve form data and add into array
     //redirect to the original /campgrounds route
     let name = req.body.name;
@@ -45,7 +43,14 @@ router.post('/campgrounds', isLoggedIn, (req,res) => {
         });
 });
 
-router.get('/campgrounds/:id', (req,res) => {    
+//new route, shows form to create campground
+router.get('/new', isLoggedIn, (req,res) => {
+    //shows form to send data to post route
+    res.render("campgrounds/new");
+});
+
+//show route, shows more info about specific campground
+router.get('/:id', (req,res) => {    
     //find campground with id and render the page with that id
     campground.findById(req.params.id).populate("comments").exec((err,foundCampground) => {
         if (err){

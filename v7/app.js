@@ -9,9 +9,9 @@ const express = require("express"),
     User = require("./models/user"),
     app = express();
 
-    const   commentRoutes = require("./routes/comments"),
-            campgroundRoutes = require("./routes/campgrounds"),
-            indexRoutes = require("./routes/index");
+const   commentRoutes = require("./routes/comments"),
+        campgroundRoutes = require("./routes/campgrounds"),
+        indexRoutes = require("./routes/index");
 
 
 mongoose.connect("mongodb://localhost:27017/yelp_camp_v7", { useNewUrlParser: true });
@@ -37,14 +37,17 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 passport.use(new LocalStrategy(User.authenticate()));
 
+//configs currentUser for session
 app.use(function (req,res, next){
     res.locals.currentUser = req.user;
     next();
 });
 
+//requires routes
 app.use(indexRoutes);
-app.use(commentRoutes);
-app.use(campgroundRoutes);
+app.use("/campgrounds/:id/comments",commentRoutes);
+app.use("/campgrounds", campgroundRoutes);
+
 
 app.listen(8000, process.env.IP, () => {
     console.log("yelpcamp server v7 has started");
