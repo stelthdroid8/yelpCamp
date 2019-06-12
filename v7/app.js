@@ -1,8 +1,7 @@
 const express = require("express"),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
-    campground = require("./models/campground"),
-    comment = require("./models/comment"),
+
     seedDB = require("./seeds"),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
@@ -36,6 +35,8 @@ app.use(passport.session());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 passport.use(new LocalStrategy(User.authenticate()));
+//end passport config
+
 
 //configs currentUser for session
 app.use(function (req,res, next){
