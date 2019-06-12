@@ -30,12 +30,16 @@ router.post('/', isLoggedIn, (req,res) => {
     let name = req.body.name;
     let image = req.body.image;
     let desc = req.body.description;
-    let newCampground = {name, image,description: desc};
+    let author = {
+        id: req.user._id,
+        username: req.user.username
+    }
+    let newCampground = {name, image,description: desc, author};
     // create new campground based off input and save to db
         
     campground.create(
         newCampground,
-        (err,campground) => {
+        (err,newCampground) => {
             if (err){
                 console.log("ERROR HAS OCCURRED");
                 console.log(err);
@@ -43,7 +47,7 @@ router.post('/', isLoggedIn, (req,res) => {
             else{
                 //debugging info and redirecting to campgrounds list
                 console.log("newly created campground!");
-                console.log(campground);
+                console.log(newCampground);
                 res.redirect('/campgrounds');
             }
         });

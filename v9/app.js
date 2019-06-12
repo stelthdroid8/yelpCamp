@@ -13,7 +13,7 @@ const   commentRoutes = require("./routes/comments"),
         indexRoutes = require("./routes/index");
 
 
-mongoose.connect("mongodb://localhost:27017/yelp_camp_v8", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost:27017/yelp_camp_v9", { useNewUrlParser: true });
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -52,7 +52,7 @@ app.use("/campgrounds", campgroundRoutes);
 
 
 app.listen(8000, process.env.IP, () => {
-    console.log("yelpcamp server v8 has started");
+    console.log("yelpcamp server v9 has started");
 });
 
 
