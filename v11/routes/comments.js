@@ -6,7 +6,7 @@ const   express = require("express"),
 // ========================
 // Comments Routes
 // ========================
-//comments NEw
+//comments New
 router.get('/new', middleware.isLoggedIn, (req,res) => {
     campground.findById(req.params.id, (err,campground) => {
         if (err){
@@ -23,7 +23,7 @@ router.post('/', middleware.isLoggedIn, (req,res) => {
     //lookup campground using id
     campground.findById(req.params.id, (err,campground) =>{
         if(err){
-            console.log(err);
+            req.flash("error", "Something went wrong!");
             res.redirect("/campgrounds");
         }
         else{
@@ -87,6 +87,7 @@ router.delete("/:comment_id", middleware.checkCommentOwnership, (req,res) =>{
                     console.log(err);
                 }
                 else{
+                    req.flash("success", "Comment Deleted!");
                     res.redirect("/campgrounds/"+req.params.id);
                 }
             });
