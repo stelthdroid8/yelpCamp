@@ -1,6 +1,7 @@
 const   express = require("express"),
         passport = require("passport"),
         User = require("../models/user"),
+        middleware = require("../middleware/index"),
         router = express.Router();
 
 //root route
@@ -50,17 +51,11 @@ router.post('/login', passport.authenticate("local", {
 });
 
 //logout route
-router.get('/logout', isLoggedIn, (req,res) => {
+router.get('/logout', middleware.isLoggedIn, (req,res) => {
     req.logOut();
     res.redirect('/campgrounds');
 });
 
-//is logged in validation (middleware)
-function isLoggedIn(req,res,next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login");
-}
+
 
 module.exports = router;
