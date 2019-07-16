@@ -15,7 +15,7 @@ middlewareObject.checkCampgroundOwnership= function(req,res,next){
                     req.flash("error", "Item not found.");
                     return res.redirect("/campgrounds");
                 }
-                    if(foundCampground.author.id.equals(req.user._id)){
+                    if(foundCampground.author.id.equals(req.user._id) || req.user.isAdmin){
                         next();
                     }
                     else{
@@ -45,7 +45,7 @@ middlewareObject.checkCommentOwnership =
                         req.flash("error", "Item not found.");
                         return res.redirect("/campgrounds");
                     }
-                        if(foundComment.author.id.equals(req.user._id)){
+                        if(foundComment.author.id.equals(req.user._id) || req.user.isAdmin){
                             next();
                         }
                         else{
