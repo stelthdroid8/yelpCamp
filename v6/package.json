@@ -13,7 +13,7 @@
     "ejs": "^2.6.1",
     "express": "^4.17.1",
     "express-session": "^1.16.1",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.20",
     "mongoose": "^5.5.12",
     "nodemon": "^1.19.1",
     "passport": "^0.4.0",
