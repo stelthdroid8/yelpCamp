@@ -9,11 +9,11 @@
   "author": "Brandon Kennedy",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.3",
     "connect-flash": "^0.1.1",
     "dotenv": "^8.2.0",
     "ejs": "^2.6.1",
-    "express": "^4.17.1",
+    "express": "^4.21.0",
     "express-session": "^1.16.1",
     "locus": "^2.0.1",
     "lodash": "^4.17.14",
